@@ -1,10 +1,9 @@
-// import { useSession, getSession } from "next-auth/react";
-import { TwitterTimelineEmbed, TwitterTweetEmbed } from "react-twitter-embed";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 import { loadTweets } from "../lib/fetch-tweets";
 
 export default function Dashboard({ tweetChunks }) {
   return (
-    <div className="flex bg-gray-600">
+    <div className="flex bg-gray-500">
       {tweetChunks.map((chunk, index) => (
         <div key={index} className="flex flex-col flex-1">
           {chunk.map((tweet, index) => (

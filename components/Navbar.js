@@ -20,7 +20,12 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/dashboard">
-              <a>Twitter</a>
+              <a>Dashboard</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/timeline">
+              <a>Timeline</a>
             </Link>
           </li>
           <li>
