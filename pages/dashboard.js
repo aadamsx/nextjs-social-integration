@@ -17,7 +17,7 @@ export default function Dashboard({ tweetChunks }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const options = {
     method: "GET",
     mode: "cors",
@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
     options
   );
   const jsonData = await response.json();
-  const tweets = jsonData.data || [];
+  const tweets = (await jsonData.data) || [];
   const tweetChunks = splitArrayObjects(tweets, 3);
 
   console.log(tweetChunks);
