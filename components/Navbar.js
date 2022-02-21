@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className="flex justify-between py-6 px-8">
       <div className="text-xl font-semibold">
         <Link href="/">
-          <a>NextAuth</a>
+          <a>Demo</a>
         </Link>
       </div>
       <div className="text-xl font-semibold">
@@ -20,7 +20,12 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/dashboard">
-              <a>Dashboard</a>
+              <a>Twitter Inegration</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard">
+              <a>Instagram Inegration</a>
             </Link>
           </li>
           {!session ? (
