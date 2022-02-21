@@ -1,5 +1,6 @@
 // import { useSession, getSession } from "next-auth/react";
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from "react-twitter-embed";
+import { loadTweets } from "../lib/fetch-tweets";
 
 export default function Dashboard({ tweetChunks }) {
   return (
@@ -18,22 +19,7 @@ export default function Dashboard({ tweetChunks }) {
 }
 
 export async function getStaticProps(context) {
-  const options = {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      Authorization: `Bearer ${process.env.NEXTAUTH_ACCESS_TOKEN}`,
-      "Content-Type": "application/json",
-      // "cache-control": "no-cache",
-    },
-  };
-
-  const response = await fetch(
-    "https://api.twitter.com/2/tweets/search/recent?query=from:directv",
-    options
-  );
-  const jsonData = await response.json();
-  const tweets = (await jsonData.data) || [];
+  const tweets = await loadTweets();
   const tweetChunks = splitArrayObjects(tweets, 3);
 
   console.log(tweetChunks);
