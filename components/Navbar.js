@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className="flex justify-between py-6 px-8">
       <div className="text-xl font-semibold">
         <Link href="/">
-          <a>Demo</a>
+          <a>Social Demo</a>
         </Link>
       </div>
       <div className="text-xl font-semibold">
