@@ -20,12 +20,12 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/dashboard">
-              <a>Twitter Inegration</a>
+              <a>Twitter</a>
             </Link>
           </li>
           <li>
             <Link href="/dashboard">
-              <a>Instagram Inegration</a>
+              <a>Instagram</a>
             </Link>
           </li>
           {!session ? (
