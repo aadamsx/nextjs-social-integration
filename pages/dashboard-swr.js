@@ -1,17 +1,30 @@
-import { TwitterTweetEmbed } from "react-twitter-embed";
+import useSWR, { SWRConfig } from "swr";
 import { loadTweets } from "../lib/fetch-tweets";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
-export default function Dashboard({ tweetChunks }) {
-  // layout container could wrap this component
-  return <TweetDashboardSWR />;
+const fetcher = async () => {
+  const tweets = await loadTweets();
+  const data = splitArrayObjects(tweets, 3);
+
+  return data;
+};
+
+export default function DashboardSWR({ fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <TweetDashboardSWR />
+    </SWRConfig>
+  );
 }
 
-function TweetDashboard({ tweetChunks }) {
-  if (!tweetChunks) return <div>loading...</div>;
+function TweetDashboardSWR() {
+  const { data } = useSWR("/api/tweets", fetcher);
+
+  if (!data) return <div>loading...</div>;
 
   return (
     <div className="flex bg-gray-500">
-      {tweetChunks.map((chunk, index) => (
+      {data.map((chunk, index) => (
         <div key={index} className="flex flex-col flex-1">
           {chunk.map((tweet, index) => (
             <div key={index} className="p-2">
@@ -26,11 +39,13 @@ function TweetDashboard({ tweetChunks }) {
 
 export async function getServerSideProps() {
   const tweets = await loadTweets();
-  const tweetChunks = splitArrayObjects(tweets, 3);
+  const data = splitArrayObjects(tweets, 3);
 
   return {
     props: {
-      tweetChunks,
+      fallback: {
+        "/api/tweets": data,
+      },
     },
   };
 }

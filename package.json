@@ -13,7 +13,8 @@
     "next-auth": "^4.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-twitter-embed": "^4.0.4"
+    "react-twitter-embed": "^4.0.4",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

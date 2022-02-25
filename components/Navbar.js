@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
-  const { data: session } = useSession();
-
   return (
     <nav className="flex justify-between py-6 px-8">
       <div className="text-xl font-semibold">
@@ -24,6 +21,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link href="/dashboard-swr">
+              <a>Dashboard SWR</a>
+            </Link>
+          </li>
+          <li>
             <Link href="/timeline">
               <a>Timeline</a>
             </Link>
@@ -33,7 +35,7 @@ export default function Navbar() {
               <a>Instagram</a>
             </Link>
           </li>
-          {!session ? (
+          {/* {!session ? (
             <li>
               <Link href="/api/auth/signin">
                 <a
@@ -59,7 +61,7 @@ export default function Navbar() {
                 </a>
               </Link>
             </li>
-          )}
+          )} */}
         </ul>
       </div>
     </nav>
